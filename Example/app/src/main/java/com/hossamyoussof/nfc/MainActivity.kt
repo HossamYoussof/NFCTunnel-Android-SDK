@@ -57,12 +57,14 @@ class MainActivity : ComponentActivity(), NFCTunnelListener {
 
     override fun onResume() {
         super.onResume()
-        nfcTunnel.onResume()
+        if (nfcTunnel.isNFCEnabled()) {
+            nfcTunnel.startSession()
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        nfcTunnel.onPause()
+        nfcTunnel.endSession()
     }
 
     public override fun onNewIntent(intent: Intent?) {
