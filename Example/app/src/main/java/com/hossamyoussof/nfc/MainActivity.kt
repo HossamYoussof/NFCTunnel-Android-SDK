@@ -57,8 +57,12 @@ class MainActivity : ComponentActivity(), NFCTunnelListener {
 
     override fun onResume() {
         super.onResume()
-        if (nfcTunnel.isNFCEnabled()) {
-            nfcTunnel.startSession()
+        if (nfcTunnel.isNFCSupported()) {
+            if (nfcTunnel.isNFCEnabled()) {
+                nfcTunnel.startSession()
+            } else {
+                nfcTunnel.enableNFC()
+            }
         }
     }
 
