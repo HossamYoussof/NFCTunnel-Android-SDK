@@ -7,6 +7,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.hossamyoussof.nfc.ui.theme.NFCTheme
 import com.rasheedapp.nfctunnel.NFCTunnel
 import com.rasheedapp.nfctunnel.NFCTunnelListener
@@ -49,7 +53,21 @@ class MainActivity : ComponentActivity(), NFCTunnelListener {
                         Greeting("NFC reader")
                         DisplayNdefMessage(ndefMessage)
                     }
-
+                    Column(
+                        verticalArrangement = Arrangement.Bottom,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Button(
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .offset(x = 16.dp, y = 16.dp),
+                            onClick = {
+                                ndefMessage = ""
+                            }
+                        ) {
+                            Text(text = "Clear")
+                        }
+                    }
                 }
             }
         }
